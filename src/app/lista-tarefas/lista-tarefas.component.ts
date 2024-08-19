@@ -28,7 +28,7 @@ import {
 })
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
-  formAberto: boolean = false;
+  formAberto: boolean = true;
   categoria: string = '';
   validado: boolean = false;
   indexTarefa = -1;
@@ -40,8 +40,8 @@ export class ListaTarefasComponent implements OnInit {
     id: [0],
     descricao: ['', Validators.required],
     statusFinalizado: [false, Validators.required],
-    categoria: ['', Validators.required],
-    prioridade: ['', Validators.required],
+    categoria: ['Casa', Validators.required],
+    prioridade: ['Alta', Validators.required],
   });
 
   constructor(
