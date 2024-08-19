@@ -3,6 +3,7 @@
     <button (click)="mostrarOuEsconderFormulario()">Criar nova tarefa</button>
   </div>
   <form
+    @shownState
     class="formulario ff-prompt"
     [formGroup]="formulario"
     *ngIf="formAberto"
@@ -66,10 +67,21 @@
       alt="Ilustração de um ambiente com mesa, computador, quadro e um vaso com planta"
     />
   </div>
-  <div *ngIf="listaTarefas.length > 0; else semTarefas">
+  <div class="busca">
+    <p class="ff-prompt">Procurando o que fazer?</p>
+    <input
+      type="text"
+      id="campo-busca"
+      placeholder="Busque por uma tarefa..."
+      [(ngModel)]="campoBusca"
+      (keyup)="buscarTarefaPorDescricao(campoBusca)"
+    />
+  </div>
+  <div *ngIf="tarefasFiltradas.length > 0; else semTarefas">
     <div
+      @filterAnimation
       class="lista-tarefas card-{{ tarefa.categoria }}"
-      *ngFor="let tarefa of listaTarefas; let i = index"
+      *ngFor="let tarefa of tarefasFiltradas; let i = index"
       (mouseover)="indexTarefa = i"
       [@highlightedState]="indexTarefa === i ? 'highlighted' : 'default'"
     >
@@ -92,6 +104,7 @@
                 : 'icone-unchecked'
             "
             (click)="finalizarTarefa(tarefa.id)"
+            [@checkAnimationState]="tarefa.id === id ? 'checked' : 'unchecked'"
           ></button>
         </p>
       </div>
