@@ -5,8 +5,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
 import {
+  adviceTrigger,
   checkAnimationStateTrigger,
   filterTrigger,
+  formButtonTrigger,
   highlightedStateTrigger,
   shownStateTrigger,
 } from '../animations';
@@ -20,6 +22,8 @@ import {
     shownStateTrigger,
     checkAnimationStateTrigger,
     filterTrigger,
+    formButtonTrigger,
+    adviceTrigger,
   ],
 })
 export class ListaTarefasComponent implements OnInit {

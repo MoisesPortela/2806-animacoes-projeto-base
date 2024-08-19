@@ -1,5 +1,6 @@
 import {
   animate,
+  group,
   keyframes,
   state,
   style,
@@ -65,5 +66,54 @@ export const filterTrigger = trigger('filterAnimation', [
       '400ms cubic-bezier(.22,.84,.73,.2)',
       style({ opacity: 0, width: 0 })
     ),
+  ]),
+]);
+export const formButtonTrigger = trigger('formButtonAnimation', [
+  transition('invalid=>valid', [
+    group([
+      animate(200, style({ backgroundColor: '#63B77C' })),
+      animate(100, style({ transform: 'scale(1.1)' })),
+    ]),
+    animate(200, style({ transform: 'scale(1)' })),
+  ]),
+  transition('valid=>invalid', [
+    group([
+      animate(200, style({ backgroundColor: '#6C757D' })),
+      animate(100, style({ transform: 'scale(0.5)' })),
+    ]),
+    animate(200, style({ transform: 'scale(1)' })),
+  ]),
+]);
+export const adviceTrigger = trigger('adviceAnimation', [
+  transition(':enter', [
+    style({
+      transform: 'translateX(-100%)',
+      with: '100%',
+      opacity: 0,
+    }),
+    group([
+      animate(
+        '0.3s 0.1s ease',
+        style({ transform: 'translateX(0)', width: '*' })
+      ),
+      animate('0.3s ease', style({ opacity: 1 })),
+    ]),
+  ]),
+  transition(':leave', [
+    group([
+      animate(
+        '0.3s ease',
+        style({
+          transform: 'translateX(100%)',
+          width: '*',
+        })
+      ),
+      animate(
+        '0.3s 0.2s ease',
+        style({
+          opacity: 0,
+        })
+      ),
+    ]),
   ]),
 ]);
