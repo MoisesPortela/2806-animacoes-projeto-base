@@ -10,6 +10,7 @@ import {
   filterTrigger,
   formButtonTrigger,
   highlightedStateTrigger,
+  shakeTrigger,
   shownStateTrigger,
 } from '../animations';
 
@@ -24,11 +25,12 @@ import {
     filterTrigger,
     formButtonTrigger,
     adviceTrigger,
+    shakeTrigger,
   ],
 })
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
-  formAberto: boolean = true;
+  formAberto: boolean = false;
   categoria: string = '';
   validado: boolean = false;
   indexTarefa = -1;
@@ -40,8 +42,8 @@ export class ListaTarefasComponent implements OnInit {
     id: [0],
     descricao: ['', Validators.required],
     statusFinalizado: [false, Validators.required],
-    categoria: ['Casa', Validators.required],
-    prioridade: ['Alta', Validators.required],
+    categoria: ['', Validators.required],
+    prioridade: ['', Validators.required],
   });
 
   constructor(
